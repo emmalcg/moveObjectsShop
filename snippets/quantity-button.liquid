@@ -1,0 +1,7 @@
+<label for="quantity">{{ 'product.quantity' | t }}</label>
+
+<input type="number" class="js-quantity-field sr-only" id="quantity" name="quantity" value="1" min="1" max="{{ product.variants.first.inventory_quantity }}">
+
+<button class="quantity-button minus" type="button" disabled>&ndash;</button>
+<span class="quantity-text">1</span>
+<button class="quantity-button plus" type="button">+</button>

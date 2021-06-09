@@ -1,0 +1,26 @@
+<header class="header-global">
+
+    <a href="/" class=logo><h1>{{ 'general.title' | t }}</h1></a>
+
+    <nav>
+        <ul class="header-menu">
+            {% for link in linklists.main-menu.links %}
+                <li>
+                    <a href="{{ link.url }}">{{ link.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+
+    <a href="/cart" class="cart-link">
+        <span>
+            <img src="{{ 'cart-01.png' | asset_img_url: '80x' }}" alt="your cart">
+            <div class="cart-item-count">
+                {{ cart.item_count }}
+            </div>
+        </span>
+        <span>
+            X
+        </span>
+    </a>
+</header>

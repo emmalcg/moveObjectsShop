@@ -1,0 +1,51 @@
+{
+  "general": {
+    "title": "MoveObjects On",
+    "shop": {
+      "title": "Shop"
+    },
+    "about": {
+      "title": "About",
+      "description": "All about moveObject On show and selling objects here"
+    },
+    "gallery": {
+      "title": "Gallery"
+    },
+    "404": {
+      "title": "Sorry we can't find that page",
+      "subtext_html": "Back to shop"
+    }
+  },
+  "header": {
+    "nav": {
+      "about": "About",
+      "shop": "Shop",
+      "gallery": "Gallery"
+    }
+  },
+  "cart": {
+    "empty": {
+      "title": "Cart",
+      "text": "Cart is Empty",
+      "button": "Keep Shopping"
+    },
+    "filled": {
+      "title": "Cart",
+      "subtotal": "Subtotal",
+      "button": "Checkout"
+    }
+  },
+  "footer": {
+    "social": {
+      "plumb_url": "https://theplumb.ca/",
+      "plumb_text": "Visit the plumb.ca",
+      "email_link": "pageartprojects@gmail.com",
+      "email_text": "Email us"
+    },
+    "copyright": "©{{ date }} PAGE Art Projects"
+  },
+  "product": {
+    "quantity": "Quantity",
+    "submit": "Add to Cart"
+  }
+}

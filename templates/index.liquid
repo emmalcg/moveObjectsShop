@@ -1,0 +1,8 @@
+<section class="shop-section">
+  <h2>{{ 'general.shop.title' | t }}</h2>
+  <div class="index-products">
+    {% for product in collections.frontpage.products limit:12 %}
+      {% include 'product-card' %}
+    {% endfor %}
+  </div>
+</section>
