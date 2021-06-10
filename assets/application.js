@@ -1,5 +1,4 @@
 document.addEventListener ('DOMContentLoaded', () => {
-
     const moveApp = {}
 
     //make number function from a string
@@ -16,26 +15,35 @@ document.addEventListener ('DOMContentLoaded', () => {
     } 
     moveApp.buttonPriceEl = document.querySelector('.add-cart-button-price')
 
+
     //quantity fields 
-
-
-
     moveApp.quantityPicker = () => {
-        const minusButtonEls = document.querySelectorAll('button.minus');
-        const plusButtonEls = document.querySelectorAll('button.plus')
+        const quantityButtonEls = document.querySelectorAll('button.quantity-button');
         
         //create synthetic event to run every time button is click
         const changeQuantity = new Event('input');
 
-        function increaseCount (e) {
+        function changeCount () {
+            console.log(this)
             const inputQuantityEl = this.parentElement.querySelector('.js-quantity-field')
 
             const quantityMax = inputQuantityEl.getAttribute('max') ? parseInt(inputQuantityEl.getAttribute('max')) : null; 
             // console.log(e.target)
             let value = parseInt(inputQuantityEl.value)
-            if (quantityMax) {
-                if (value < quantityMax) {
-                    value++
+
+            if (this.classList.contains('plus')) {
+                if (quantityMax) {
+                    if (value < quantityMax) {
+                        value++
+                        inputQuantityEl.value = value
+                        inputQuantityEl.dispatchEvent(changeQuantity);
+                    }
+                }
+            }
+
+            if (this.classList.contains('minus')) {
+                if (value > 1) {
+                    value--
                     inputQuantityEl.value = value
                     inputQuantityEl.dispatchEvent(changeQuantity);
                 }
@@ -51,36 +59,8 @@ document.addEventListener ('DOMContentLoaded', () => {
             }
         }
 
-        function decreaseCount () {
-            const inputQuantityEl = this.parentElement.querySelector('.js-quantity-field')
-    
-            const quantityMax = inputQuantityEl.getAttribute('max') ? parseInt(inputQuantityEl.getAttribute('max')) : null; 
-
-            let value = parseInt(inputQuantityEl.value)
-
-            if (value > 1) {
-                value--
-                inputQuantityEl.value = value
-
-                inputQuantityEl.dispatchEvent(changeQuantity);
-            }
-
-            const quantityTextEl = this.parentElement.querySelector('.quantity-text')
-            quantityTextEl.innerHTML = inputQuantityEl.value
-
-            //add total price text to "Add to Cart" button
-            if(moveApp.productPriceTextEl !== null) {
-                const quantityPrice = value * moveApp.productPrice
-                moveApp.buttonPriceEl.innerHTML = `$${quantityPrice}.00`
-            }
-        } 
-
-        minusButtonEls.forEach(button => {
-            button.addEventListener('click', decreaseCount)
-        })
-
-        plusButtonEls.forEach(button => {
-            button.addEventListener('click', increaseCount)
+        quantityButtonEls.forEach(button => {
+            button.addEventListener('click', changeCount)
         })
     }
 
@@ -89,5 +69,4 @@ document.addEventListener ('DOMContentLoaded', () => {
     }
 
     moveApp.init()
-
 })
