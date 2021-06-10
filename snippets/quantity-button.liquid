@@ -1,7 +1,9 @@
-<label for="quantity">{{ 'product.quantity' | t }}</label>
-
-<input type="number" class="js-quantity-field sr-only" id="quantity" name="quantity" value="1" min="1" max="{{ product.variants.first.inventory_quantity }}">
-
-<button class="quantity-button minus" type="button" disabled>&ndash;</button>
-<span class="quantity-text">1</span>
-<button class="quantity-button plus" type="button">+</button>
+<div class="quantity-picker">
+  <label for="{{ id }}">{{ 'product.quantity' | t }}</label>
+  
+  <input type="number" class="js-quantity-field" id="{{ id }}" name="{{ name }}" value="{{ value }}" {% if min != blank %}min="{{ min }}"{% endif %} {% if max != blank %}max="{{ max }}"{% endif %}>
+  
+  <button class="quantity-button minus" type="button" {% if value == min %}disabled{% endif %}>&ndash;</button>
+  <span class="quantity-text">{{ value }}</span>
+  <button class="quantity-button plus" type="button" {% if value == max %}disabled{% endif %}>+</button>
+</div>
