@@ -1,8 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-//quantity button functionality
     const moveApp = {}
 
+    moveApp.makeNumber = (string) => {
+        return parseInt(string.replace(/\D/g,''))
+    }
+    moveApp.productPriceText = document.querySelector('.product-price').innerHTML;
+    moveApp.productPrice = moveApp.makeNumber(moveApp.productPriceText)
+
+    moveApp.buttonPriceEl = document.querySelector('.add-cart-button-price')
+    console.log(moveApp.buttonPriceEl)
+
+
+    //quantity button functionality
     moveApp.minusButtonEl = document.querySelector('button.minus');
     moveApp.plusButtonEl = document.querySelector('button.plus')
     moveApp.inputQuantityEl = document.querySelector('.js-quantity-field')
@@ -21,6 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 moveApp.inputQuantityEl.dispatchEvent(moveApp.changeQuantity);
             }
         }
+        const quantityPrice = value * moveApp.productPrice
+        moveApp.buttonPriceEl.innerHTML = `$${quantityPrice}.00`
     }
 
     moveApp.decreaseCount = () => {
@@ -31,6 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             moveApp.inputQuantityEl.dispatchEvent(moveApp.changeQuantity);
         }
+
+        const quantityPrice = value * moveApp.productPrice
+        moveApp.buttonPriceEl.innerHTML = `$${quantityPrice}.00`
     } 
 
     moveApp.minusButtonEl.addEventListener('click', moveApp.decreaseCount)

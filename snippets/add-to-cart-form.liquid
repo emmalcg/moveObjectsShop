@@ -12,7 +12,7 @@
   <span class="quantity-text">1</span>
   <button class="quantity-button plus" type="button">+</button> -->
 
-  <button type="submit" name="add" id="add-to-cart"> {{ 'product.submit' | t }} </button>
+  <button type="submit" name="add" class="add-to-cart-button">{{ 'product.submit' | t }} <span class="add-cart-button-price">{{ product.price | money}}</span></button>
 
   {% endif %}
 </form>

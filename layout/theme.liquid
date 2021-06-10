@@ -16,12 +16,16 @@
 </head>
 <body>
 
-
-  
   {% include 'header' %}
+
+  {% if template != 'cart' %}
+    {% include 'mini-cart' %} 
+  {% endif %}
+
   <main role="main">
     {{ content_for_layout }}
     {% include 'footer' %}
+
   </main>
 </body>
 </html>
