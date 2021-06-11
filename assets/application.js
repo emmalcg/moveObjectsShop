@@ -8,7 +8,6 @@ document.addEventListener ('DOMContentLoaded', () => {
 
     //make number to display in "Add to Cart" button on product page 
     moveApp.productPriceTextEl = document.querySelector('.product-price')
-    console.log(moveApp.productPriceTextEl)
     if (moveApp.productPriceTextEl !== null) {
         moveApp.productPriceText = moveApp.productPriceTextEl.innerHTML
         moveApp.productPrice = moveApp.makeNumber(moveApp.productPriceText)
@@ -24,11 +23,12 @@ document.addEventListener ('DOMContentLoaded', () => {
         const changeQuantity = new Event('input');
 
         function changeCount () {
-            console.log(this)
             const inputQuantityEl = this.parentElement.querySelector('.js-quantity-field')
 
             const quantityMax = inputQuantityEl.getAttribute('max') ? parseInt(inputQuantityEl.getAttribute('max')) : null; 
-            // console.log(e.target)
+
+            const quantityMin = inputQuantityEl.getAttribute('min') ? parseInt(inputQuantityEl.getAttribute('min')) : null; 
+            
             let value = parseInt(inputQuantityEl.value)
 
             if (this.classList.contains('plus')) {
@@ -42,7 +42,7 @@ document.addEventListener ('DOMContentLoaded', () => {
             }
 
             if (this.classList.contains('minus')) {
-                if (value > 1) {
+                if (value > quantityMin) {
                     value--
                     inputQuantityEl.value = value
                     inputQuantityEl.dispatchEvent(changeQuantity);

@@ -3,7 +3,12 @@
 
   <input name="id" value="{{ product.variants.first.id }}" type="hidden">
 
-  {% include 'quantity-button' %}
+  {% include 'quantity-button' with id: 'quantity', value: '1', min: '1', max: product.variants.first.inventory_quantity %}
+
+
+  <!-- {% assign quantity_id = 'updates_' | append: item.key %}
+            {% include 'quantity-button' with name: 'updates[]', id: quantity_id, value: item.quantity, min: 0, max: item.product.variants.first.inventory_quantity %}  -->
+
 
   <!-- {% include 'quantity-button' with name: 'updates[]', id: quantity_id, value: item.quantity, min: 0, max: item.variant.inventory_quantity %} -->
 
