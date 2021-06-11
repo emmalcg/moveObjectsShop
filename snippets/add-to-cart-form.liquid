@@ -5,20 +5,6 @@
 
   {% include 'quantity-button' with id: 'quantity', value: '1', min: '1', max: product.variants.first.inventory_quantity %}
 
-
-  <!-- {% assign quantity_id = 'updates_' | append: item.key %}
-            {% include 'quantity-button' with name: 'updates[]', id: quantity_id, value: item.quantity, min: 0, max: item.product.variants.first.inventory_quantity %}  -->
-
-
-  <!-- {% include 'quantity-button' with name: 'updates[]', id: quantity_id, value: item.quantity, min: 0, max: item.variant.inventory_quantity %} -->
-
-  <!-- <label for="quantity">{{ 'product.quantity' | t }}</label>
-  <input type="number" class="js-quantity-field sr-only" id="quantity" name="quantity" value="1" min="1" max="{{ product.variants.first.inventory_quantity }}">
-
-  <button class="quantity-button minus" type="button" disabled>&ndash;</button>
-  <span class="quantity-text">1</span>
-  <button class="quantity-button plus" type="button">+</button> -->
-
   <button type="submit" name="add" class="add-to-cart-button">{{ 'product.submit' | t }} <span class="add-cart-button-price">{{ product.price | money}}</span></button>
 
   {% endif %}

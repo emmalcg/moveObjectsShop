@@ -10,10 +10,8 @@
         </div>
         <div class="line-bottom">
 
-            <!-- <input type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0"> -->
-
             {% assign quantity_id = 'updates_' | append: item.key %}
-            {% include 'quantity-button' with name: 'updates[]', id: quantity_id, value: item.quantity, min: 0, max: item.product.variants.first.inventory_quantity %} 
+            {% include 'quantity-button' with name: 'updates[]', id: quantity_id, value: item.quantity, min: 1, max: item.product.variants.first.inventory_quantity, field_class:'js-line-quantity' %} 
             
             <p>{{ item.line_price | money_without_trailing_zeros }}</p>
             

@@ -19,7 +19,7 @@ document.addEventListener ('DOMContentLoaded', () => {
     moveApp.quantityPicker = () => {
         const quantityButtonEls = document.querySelectorAll('button.quantity-button');
         
-        //create synthetic event to run every time button is click
+        // //create synthetic event to run every time button is click
         const changeQuantity = new Event('input');
 
         function changeCount () {
@@ -57,15 +57,48 @@ document.addEventListener ('DOMContentLoaded', () => {
                 const quantityPrice = value * moveApp.productPrice
                 moveApp.buttonPriceEl.innerHTML = `$${quantityPrice}.00`
             }
+            
         }
 
         quantityButtonEls.forEach(button => {
             button.addEventListener('click', changeCount)
         })
+
+        // function lineItem () {
+        //     const lineQuantitySelectorEl = document.querySelector('.js-line-quantity');
+        //     if (lineQuantitySelectorEl === null) {return}
+
+
+            
+            
+        // }
     }
+
+    // cart line item
+    moveApp.lineItem = () => {   
+
+        const lineQuantitySelectorEl = document.querySelector('.js-line-quantity');
+
+        console.log(lineQuantitySelectorEl)
+        
+        function onLineQuantityChanged(e) {
+            console.log(e)
+            const quantity = this.value;
+            const id = this.attr('id').replace('updates_', '');
+
+            console.log({quantity, id})
+            inputQuantityEl.dispatchEvent(changeQuantity);
+        }
+
+        lineQuantitySelectorEl.addEventListener('input', () => {
+
+        })
+    }
+
 
     moveApp.init = () => {
         moveApp.quantityPicker()
+        moveApp.lineItem()
     }
 
     moveApp.init()
