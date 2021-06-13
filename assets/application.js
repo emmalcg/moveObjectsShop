@@ -25,13 +25,17 @@ document.addEventListener ('DOMContentLoaded', () => {
         function changeCount () {
             const inputQuantityEl = this.parentElement.querySelector('.js-quantity-field')
 
+            const minusButton = this.parentElement.querySelector('.minus')
+            const plusButton = this.parentElement.querySelector('.plus')
+            
+
             const quantityMax = inputQuantityEl.getAttribute('max') ? parseInt(inputQuantityEl.getAttribute('max')) : null; 
 
             const quantityMin = inputQuantityEl.getAttribute('min') ? parseInt(inputQuantityEl.getAttribute('min')) : null; 
             
             let value = parseInt(inputQuantityEl.value)
 
-            if (this.classList.contains('plus')) {
+            if (this === plusButton) {
                 if (quantityMax) {
                     if (value < quantityMax) {
                         value++
@@ -40,17 +44,33 @@ document.addEventListener ('DOMContentLoaded', () => {
                     }
                 }
             }
-
-            if (this.classList.contains('minus')) {
+    
+            if (this === minusButton) {
                 if (value > quantityMin) {
                     value--
                     inputQuantityEl.value = value
+                    console.log(value)
                     inputQuantityEl.dispatchEvent(changeQuantity);
                 }
             }
 
+            //change quantity number to match hidden input
             const quantityTextEl = this.parentElement.querySelector('.quantity-text')
             quantityTextEl.innerHTML = inputQuantityEl.value
+
+            // disable minus button
+            if (value === quantityMin) {
+                minusButton.disabled = true
+            } else if (value > quantityMin) {
+                minusButton.disabled = false
+            }
+
+            // disable plus button
+            if (value === quantityMax) {
+                plusButton.disabled = true
+            } else if (value < quantityMax) {
+                plusButton.disabled = false
+            }
 
             //add total price text to "Add to Cart" button
             if(moveApp.productPriceTextEl !== null) {
@@ -63,23 +83,12 @@ document.addEventListener ('DOMContentLoaded', () => {
         quantityButtonEls.forEach(button => {
             button.addEventListener('click', changeCount)
         })
-
-        // function lineItem () {
-        //     const lineQuantitySelectorEl = document.querySelector('.js-line-quantity');
-        //     if (lineQuantitySelectorEl === null) {return}
-
-
-            
-            
-        // }
     }
 
     // cart line item
     moveApp.lineItem = () => {   
 
         const lineQuantitySelectorEl = document.querySelector('.js-line-quantity');
-
-        console.log(lineQuantitySelectorEl)
         
         function onLineQuantityChanged(e) {
             console.log(e)
@@ -94,7 +103,6 @@ document.addEventListener ('DOMContentLoaded', () => {
 
         })
     }
-
 
     moveApp.init = () => {
         moveApp.quantityPicker()
